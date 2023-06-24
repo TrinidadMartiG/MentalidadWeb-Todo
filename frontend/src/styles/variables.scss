@@ -1,0 +1,7 @@
+$primary-color: rgb(255, 254, 254);
+$secondary-color: rgb(78, 76, 76);
+$borders: darken($primary-color, 10%);
+$third-color: darken($primary-color, 5%);
+$text: rgb(31, 31, 31);
+$red: lighten(red, 14%);
+$linear-gradient-red: linear-gradient(180deg, white, $red 850%) no-repeat;
