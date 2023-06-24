@@ -5,11 +5,16 @@
 }
 
 body {
-  background: $linear-gradient-red;
+  background: white;
   color: white;
   box-sizing: border-box;
   margin-top: 2.5rem;
 }
+
+svg{
+color: white;
+}
+
 .main-title {
   color: $secondary-color;
 }
@@ -30,6 +35,11 @@ h1 {
   text-align: center;
   padding-top: 1rem;
 }
+
+.svg-img{
+ color: white;
+}
+
 .task-app {
   justify-content: center;
   padding: 1rem 2.5rem;
@@ -57,9 +67,9 @@ h1 {
   max-width: fit-content;
   margin: 1.8rem 1.2rem;
   border-radius: 26px;
-  border: 2px darken($primary-color, 10%);
+  border: 2px #80c431;
   border-style: ridge;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
 
   .task-button{
     margin-left: .4rem;

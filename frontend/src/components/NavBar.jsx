@@ -14,7 +14,7 @@ const Navigation = () => {
               src={logo}
               width="35"
               height="35"
-              className="d-inline-block align-top"
+              className="d-inline-block align-top svg-img"
             />{' '}
             <span className="nav-title">MentalidadWeb <span className='nav-higlight'>To-Do</span></span>
           </Navbar.Brand>
