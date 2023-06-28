@@ -17,6 +17,7 @@ flask-cors = "*"
 python_version = "3.11"
 
 [scripts]
+
 init="flask db init"
 migrate="flask db migrate"
 upgrade="flask db upgrade"

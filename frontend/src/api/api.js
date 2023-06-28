@@ -9,7 +9,6 @@ export const fetchTasks = async () => {
   if (!response.ok) {
     throw new Error(data.error);
   }
-
   return data;
 };
 

@@ -123,8 +123,9 @@ h1 {
   justify-content: space-between;
   align-items: center;
   border-radius: 5px;
-  background-color: white;
-  color: $primary-color;
+  border-color:#80c431 2px solid;
+  background-color: $third-color;
+  color: $secondary-color;
   cursor: pointer;
 }
 
@@ -144,14 +145,20 @@ h1 {
   height: 100%;
   font-size: 20px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items:flex-start ;
   overflow-wrap: anywhere;
+  .description{
+    font-size: 1rem;
+    color: lighten($secondary-color, 15%);
+  }
 }
 
 .task-icon {
   width: 25px;
   height: 25px;
   margin: 5px;
+  color: $secondary-color;
 }
 
 /* task complete */
