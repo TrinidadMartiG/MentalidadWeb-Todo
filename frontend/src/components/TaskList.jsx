@@ -12,7 +12,7 @@ let TaskList = () => {
 
   useEffect(() => {
     fetchTasks()
-      .then(setTasks)
+      .then((data) => setTasks(data))
       .catch((error) => console.error(error))
   },[])
 
