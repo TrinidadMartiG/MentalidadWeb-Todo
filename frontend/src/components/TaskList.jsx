@@ -7,7 +7,8 @@ import { fetchTasks, modifyTask, addTask, deleteTask } from '../api/api.js';
 
 let TaskList = () => {
   const [tasks, setTasks] = useState([])
-  const [input, setInput] = useState('')
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
 
   useEffect(() => {
     fetchTasks()
@@ -41,46 +42,49 @@ const handleDeleteTask = (id, label) => {
   });
 };
 
-const handleAddTask = (newTask) => {
+const handleAddTask = () => {
+  const newTask = {
+    title: title,
+    description: description,
+    complete: false,
+  };
+
   addTask(newTask)
-  .then((addedTask)=>{
-    const updatedTasks  = [...tasks, addedTask]
-    setTasks(updatedTasks)
-    console.log('New task added:', newTask)
-  })
-  .catch((error)=>{
-    console.log('Error:',error)
-  });
+    .then((addedTask) => {
+      const updatedTasks = [...tasks, addedTask];
+      setTasks(updatedTasks);
+      console.log('New task added:', newTask);
+      setTitle('');
+      setDescription('');
+    })
+    .catch((error) => {
+      console.log('Error:', error);
+    });
 };
 
-  const dealChange = (e) => {
-    /* extrae valor de campo de texto */
-    e.preventDefault()
-    setInput(e.target.value)
-  }
+const handleTitleChange = (e) => {
+  setTitle(e.target.value);
+};
 
-  const completeTask = (id) => {
-    const taskUpdated = tasks.map((task) => {
-      if (task.id === id) {
-        task.complete = !task.complete
-      }
-      return task
-    })
-    setTasks(taskUpdated)
-  }
+const handleDescriptionChange = (e) => {
+  setDescription(e.target.value);
+};
 
-  const handleFormSubmit  = (e) => {
-    /* evita que se recarge app completa */
-    e.preventDefault()
-
-    const newTask = {
-      label: input,
+const completeTask = (id) => {
+  const taskUpdated = tasks.map((task) => {
+    if (task.id === id) {
+      task.complete = !task.complete;
     }
-    /*task.onSubmit(newTask);*/
-    handleAddTask(newTask)
-    setInput('')
-    console.log('new task added', newTask)
-  }
+    return task;
+  });
+  setTasks(taskUpdated);
+};
+
+const handleFormSubmit = (e) => {
+  e.preventDefault();
+  handleAddTask();
+  console.log('new task added', { title, description });
+};
 
   return (
     <div>
@@ -88,11 +92,21 @@ const handleAddTask = (newTask) => {
         <input
           type="text"
           className="task-input"
-          placeholder="Write it here..."
-          name="label"
-          value={input}
-          onChange={dealChange}
+          placeholder="Write your task here..."
+          name="title"
+          value={title}
+          onChange={handleTitleChange}
         />
+         {title && (
+          <input
+            type="text"
+            className="task-input-description"
+            placeholder="Write the description here..."
+            name="description"
+            value={description}
+            onChange={handleDescriptionChange}
+          />
+        )}
         <button className="task-button" onClick={handleFormSubmit }>
          <span className='button-text'>Add</span> 
           <AiOutlinePlusCircle className='icon' />
@@ -105,7 +119,8 @@ const handleAddTask = (newTask) => {
             key={indx}
             /* debe tener un key para que react mantenga el orden de la lista */
             id={elm._id}
-            label={elm.label}
+            title={elm.title}
+            description={elm.description}
             complete={elm.complete}
             completeTask={completeTask}
             deleteTask={handleDeleteTask}

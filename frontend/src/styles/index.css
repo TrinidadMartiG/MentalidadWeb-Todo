@@ -3,10 +3,14 @@
 }
 
 body {
-  background: linear-gradient(180deg, white, #ff4747 850%) no-repeat;
+  background: white;
   color: white;
   box-sizing: border-box;
   margin-top: 2.5rem;
+}
+
+svg {
+  color: white;
 }
 
 .main-title {
@@ -29,6 +33,10 @@ h1 {
   text-shadow: 0.125rem 0.438rem 0.313rem rgba(143, 136, 129, 0.3), 0px -0.25rem 0.625rem rgba(255, 255, 255, 0.3);
   text-align: center;
   padding-top: 1rem;
+}
+
+.svg-img {
+  color: white;
 }
 
 .task-app {
@@ -58,9 +66,9 @@ h1 {
   max-width: fit-content;
   margin: 1.8rem 1.2rem;
   border-radius: 26px;
-  border: 2px #ffcbcb;
+  border: 2px #80c431;
   border-style: ridge;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
 }
 .task-principal-list .task-button {
   margin-left: 0.4rem;
