@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { AiOutlineCloseCircle, AiFillEdit } from 'react-icons/ai'
 
-let Task = ({
+const Task = ({
   id,
   title,
   description,
@@ -10,60 +10,95 @@ let Task = ({
   deleteTask,
   modifyTask,
 }) => {
-  const [isEditing, setIsEditing] = useState(false)
-  const [newtitle, setNewtitle] = useState(title)
+  const [isTitleEditing, setIsTitleEditing] = useState(false)
+  const [isDescriptionEditing, setIsDescriptionEditing] = useState(false)
+  const [newTitle, setNewTitle] = useState(title)
   const [newDescription, setNewDescription] = useState(description)
 
-  const handleInputChange = (event) => {
-    setNewtitle(event.target.value)
+  const handleTitleInputChange = (event) => {
+    setNewTitle(event.target.value)
   }
-  
-  const handleChangeDescription = (event) => {
+
+  const handleDescriptionInputChange = (event) => {
     setNewDescription(event.target.value)
   }
 
-  const handleInputBlur = () => {
-    if (newtitle !== title) {
-      modifyTask(id, { title: newtitle})
+  const handleTitleInputBlur = () => {
+    if (newTitle !== title) {
+      modifyTask(id, { title: newTitle })
     }
-    setIsEditing(false)
-  }
-  const handleDescriptionBlur = () => {
-    if (newDescription !== description) {
-      modifyTask(id, {description: newDescription })
-    }
-    setIsEditing(false)
+    setIsTitleEditing(false)
   }
 
-  const handleIconClick = () => {
-    setIsEditing(true)
+  const handleDescriptionInputBlur = () => {
+    if (newDescription !== description) {
+      modifyTask(id, { description: newDescription })
+    }
+    setIsDescriptionEditing(false)
+  }
+
+  const handleTitleIconClick = () => {
+    setIsTitleEditing(true)
+  }
+
+  const handleDescriptionIconClick = () => {
+    setIsDescriptionEditing(true)
   }
 
   return (
     <div className={complete ? 'task-container complete' : 'task-container'}>
-      {isEditing ? (
-        <>
-        <input
-          type="text"
-          value={newtitle}
-          onChange={handleInputChange}
-          onBlur={handleInputBlur}
-        />
-        <input
-          type="text"
-          value={newDescription}
-          onChange={handleChangeDescription}
-          onBlur={handleDescriptionBlur}
-        />
-        </>
-      ) : (
-        <div className="task-text" onClick={() => completeTask(id)}>
-          {title}
-          <div className="task-text description"> {description}</div>
+      <div className="taskt-text-container">
+        <div className="task-title-container">
+          {isTitleEditing ? (
+            <input
+              type="text"
+              value={newTitle}
+              onChange={handleTitleInputChange}
+              onBlur={handleTitleInputBlur}
+              name="title"
+              autoFocus
+            />
+          ) : (
+            <>
+              <div className="task-title" onClick={() => completeTask(id)}>
+                {title}
+              </div>
+              <div
+                className="task-icon-container"
+                onClick={handleTitleIconClick}
+              >
+                <AiFillEdit className="task-icon text-svg" />
+              </div>
+            </>
+          )}
         </div>
-      )}
-      <div className="task-icon-container" onClick={handleIconClick}>
-        <AiFillEdit className="task-icon" />
+        <div className="task-description-container">
+          {isDescriptionEditing ? (
+            <input
+              type="text"
+              value={newDescription}
+              onChange={handleDescriptionInputChange}
+              onBlur={handleDescriptionInputBlur}
+              name="description"
+              autoFocus
+            />
+          ) : (
+            <>
+              <div
+                className="task-description"
+                onClick={() => completeTask(id)}
+              >
+                {description}
+              </div>
+              <div
+                className="task-icon-container"
+                onClick={handleDescriptionIconClick}
+              >
+                <AiFillEdit className="task-icon text-svg-description" />
+              </div>
+            </>
+          )}
+        </div>
       </div>
       <div
         className="task-icon-container"

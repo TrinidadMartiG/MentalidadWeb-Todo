@@ -1,7 +1,7 @@
 @import './variables.scss';
 
-*{
-  font:bold;
+* {
+  font: bold;
 }
 
 body {
@@ -11,21 +11,21 @@ body {
   margin-top: 2.5rem;
 }
 
-svg{
-color: white;
+svg {
+  color: white;
 }
 
 .main-title {
   color: $secondary-color;
 }
 
-.nav-bar{
-  background-color: rgba(0,31,43,.9);
+.nav-bar {
+  background-color: rgba(0, 31, 43, 0.9);
 }
-.nav-title{
+.nav-title {
   font-size: 1em;
   color: white;
-  .nav-higlight{
+  .nav-higlight {
     color: #80c431;
   }
 }
@@ -36,8 +36,8 @@ h1 {
   padding-top: 1rem;
 }
 
-.svg-img{
- color: white;
+.svg-img {
+  color: white;
 }
 
 .task-app {
@@ -45,7 +45,7 @@ h1 {
   padding: 1rem 2.5rem;
   display: flex;
   align-items: left;
-  h1{
+  h1 {
     color: $secondary-color;
   }
 }
@@ -71,21 +71,23 @@ h1 {
   border-style: ridge;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
 
-  .task-button{
-    margin-left: .4rem;
-    padding:0.35rem;
+  .task-button {
+    margin-left: 0.4rem;
+    padding: 0.35rem;
     font-size: 20px;
     background-color: #80c431;
     border: none;
     border-radius: 15%;
-    cursor: pointer; 
-    outline:none;
+    cursor: pointer;
+    outline: none;
     color: white;
     font-weight: bold;
-    svg{
+    height: auto;
+    width: auto;
+    svg {
       color: white;
     }
-    .task-input{
+    .task-input {
       background-color: white;
       font-size: 20px;
       min-width: 1rem;
@@ -93,14 +95,14 @@ h1 {
       border: 2px solid $borders;
       outline: none;
       margin: 0px 5px;
-      &:hover{
-          border: 2px solid lighten($red,5%) !important;
+      &:hover {
+        border: 2px solid lighten($red, 5%) !important;
       }
+    }
   }
 }
-}
 
-.void{
+.void {
   padding: 3rem;
 }
 .con-title {
@@ -122,8 +124,9 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row;
   border-radius: 5px;
-  border-color:#80c431 2px solid;
+  border-color: #80c431 2px solid;
   background-color: $third-color;
   color: $secondary-color;
   cursor: pointer;
@@ -144,14 +147,23 @@ h1 {
   width: 100%;
   height: 100%;
   font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items:flex-start ;
   overflow-wrap: anywhere;
-  .description{
-    font-size: 1rem;
-    color: lighten($secondary-color, 15%);
-  }
+}
+
+.task-title-container{
+  display: flex;
+}
+
+.task-title{
+  font-size: larger;
+}
+
+.task-description-container{
+  display: flex;
+}
+.task-description{
+  font-size: medium;
+  color: lighten($secondary-color,15%);
 }
 
 .task-icon {
@@ -159,6 +171,41 @@ h1 {
   height: 25px;
   margin: 5px;
   color: $secondary-color;
+}
+
+.text-svg{
+  width: 15px;
+  height: 15px;
+}
+
+.text-svg-description{
+  width: 15px;
+  height: 15px;
+  color: lighten($secondary-color,15%);
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  height: 25px;
+  width: 25px;
+}
+
+.task-list-container {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  color: $secondary-color;
+}
+
+.task-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem 0;
 }
 
 /* task complete */

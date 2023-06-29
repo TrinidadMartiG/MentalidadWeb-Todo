@@ -81,6 +81,8 @@ h1 {
   outline: none;
   color: white;
   font-weight: bold;
+  height: auto;
+  width: auto;
 }
 .task-principal-list .task-button svg {
   color: white;
@@ -120,6 +122,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row;
   border-radius: 5px;
   border-color: #80c431 2px solid;
   background-color: #f2f2f2;
@@ -142,13 +145,23 @@ h1 {
   width: 100%;
   height: 100%;
   font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   overflow-wrap: anywhere;
 }
-.task-text .description {
-  font-size: 1rem;
+
+.task-title-container {
+  display: flex;
+}
+
+.task-title {
+  font-size: larger;
+}
+
+.task-description-container {
+  display: flex;
+}
+
+.task-description {
+  font-size: medium;
   color: #757272;
 }
 
@@ -157,6 +170,41 @@ h1 {
   height: 25px;
   margin: 5px;
   color: rgb(78, 76, 76);
+}
+
+.text-svg {
+  width: 15px;
+  height: 15px;
+}
+
+.text-svg-description {
+  width: 15px;
+  height: 15px;
+  color: #757272;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  height: 25px;
+  width: 25px;
+}
+
+.task-list-container {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  color: rgb(78, 76, 76);
+}
+
+.task-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem 0;
 }
 
 /* task complete */

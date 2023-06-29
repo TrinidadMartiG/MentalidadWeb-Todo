@@ -28,7 +28,22 @@ class TaskList(Resource):
         db.session.commit()
         return {'message': 'Task created', 'id': task.id}, 201
     
-@api.route('/hello')
-class HelloWorld(Resource):
-    def get(self):
-        return {'hello': 'world'}
+@api.route('/tasks/<int:id>')
+class SingleTask(Resource):
+    def put(self, id):
+        title = request.json.get('title')
+        description = request.json.get('description')
+
+        task = Task.query.get(id) 
+        if not task:
+            return {'message': 'Task not found'}, 404
+
+        if title:
+            task.title = title
+
+        if description:
+            task.description = description
+
+        db.session.commit()
+
+        return {'message': 'Task updated'}

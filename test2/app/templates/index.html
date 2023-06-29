@@ -2,14 +2,12 @@
 <html>
   <head>
     <title>Flask React App</title>
-    <!-- Include any necessary CSS files -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.bcf049f5.css') }}">
   </head>
   <body>
-    <!-- Placeholder for the React app's root element -->
     <div id="root"></div>
 
-    <!-- Include the necessary JavaScript files -->
     <script src="{{ url_for('static', filename='js/main.a7490354.js') }}"></script>
+    <script >const API_URL = '{{ api_url }}';</script>
   </body>
 </html>

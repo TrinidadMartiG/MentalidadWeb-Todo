@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import '../styles/TaskListStyles.scss'
 import Task from './TaskComponent'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import { fetchTasks, modifyTask, addTask, deleteTask } from '../api/api.js'
@@ -19,7 +18,12 @@ let TaskList = () => {
 
 
   const handleModifyTask = (id, newData) => {
-    modifyTask(id, newData)
+    const updatedData = {
+      title: newData.title || title,
+      description: newData.description || description
+    };
+
+    modifyTask(id, updatedData)
       .then((updatedTask) => {
         const updatedTasks = tasks.map((task) =>
           task.id === updatedTask.id ? updatedTask : task
