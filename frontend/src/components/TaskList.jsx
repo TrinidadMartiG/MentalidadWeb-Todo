@@ -16,26 +16,32 @@ let TaskList = () => {
       .catch((error) => console.error(error))
   }, [])
 
-
   const handleModifyTask = (id, newData) => {
     const updatedData = {
       title: newData.title || title,
-      description: newData.description || description
+      description: newData.description || description,
     };
-
+  
     modifyTask(id, updatedData)
       .then((updatedTask) => {
         const updatedTasks = tasks.map((task) =>
           task.id === updatedTask.id ? updatedTask : task
-        )
-        setTasks(updatedTasks)
-        console.log('Task modified', updatedTasks)
+        );
+        setTasks(updatedTasks);
+        console.log('Task modified', updatedTasks);
+        
+        // Fetch updated tasks after modifying a task
+        fetchTasks()
+          .then((data) => {
+            setTasks(data.tasks);
+          })
+          .catch((error) => console.error(error));
       })
       .catch((error) => {
-        console.error('Error:', error)
-      })
-  }
-
+        console.error('Error:', error);
+      });
+  };
+  
   const handleDeleteTask = (id, label) => {
     deleteTask(id)
       .then(() => {
@@ -62,6 +68,13 @@ let TaskList = () => {
         console.log('New task added:', newTask)
         setTitle('')
         setDescription('')
+
+        // Fetch updated tasks after adding a new task
+        fetchTasks()
+          .then((data) => {
+            setTasks(data.tasks)
+          })
+          .catch((error) => console.error(error))
       })
       .catch((error) => {
         console.log('Error:', error)
@@ -120,7 +133,7 @@ let TaskList = () => {
       </form>
 
       <div className="task-list-container">
-        { tasks && tasks.length > 0 ? (
+        {tasks && tasks.length > 0 ? (
           tasks.map((elm, indx) => (
             <Task
               key={indx}
