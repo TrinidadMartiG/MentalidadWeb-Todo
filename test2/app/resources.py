@@ -34,7 +34,7 @@ class SingleTask(Resource):
         title = request.json.get('title')
         description = request.json.get('description')
 
-        task = Task.query.get(id) 
+        task = db.session.get(Task, id) 
         if not task:
             return {'message': 'Task not found'}, 404
 

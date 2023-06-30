@@ -4,20 +4,33 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from dotenv import load_dotenv
 from flask_cors import CORS
+from flask_swagger_ui import get_swaggerui_blueprint
 
 db = SQLAlchemy()
+
 
 def create_app():
     app = Flask(__name__)
     load_dotenv()
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../data/tasks.db'
+    if app.config['TESTING']:
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../data/test_tasks.db'
+    else:
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../data/tasks.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     CORS(app)
-
-    print("Template Folder:", app.template_folder)
-
     db.init_app(app)
     migrate = Migrate(app, db)
+
+    SWAGGER_URL = '/api/v1/documentation'
+    API_URL = '/static/swagger.json'
+    SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
+        SWAGGER_URL,
+        API_URL,
+        config={
+            'app_name': "MentalidadWeb Todo"
+        }
+    )
+    app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
 
     @app.route("/")
     def hello_world():
