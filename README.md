@@ -26,7 +26,7 @@ Activate the virtual environment with pipenv:
 Install the dependencies from the requirements.txt file:
   
   ```console
-    pipenv install -r requirements.txt
+    pipenv install 
   ```
 
 Run the development server using the Flask CLI:
