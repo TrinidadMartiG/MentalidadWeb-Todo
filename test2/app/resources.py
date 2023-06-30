@@ -23,6 +23,9 @@ class TaskList(Resource):
     def post(self):
         title = request.json.get('title')
         description = request.json.get('description')
+        if not title or not description or title.strip() == "" or description.strip() == "":
+            return {"message": "Title and description must not be empty"}, 400
+        
         task = Task(title=title, description=description)
         db.session.add(task)
         db.session.commit()

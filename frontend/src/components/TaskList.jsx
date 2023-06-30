@@ -147,7 +147,7 @@ let TaskList = () => {
             />
           ))
         ) : (
-          <p>...loading</p>
+          <p>No tasks added 😔</p>
         )}
       </div>
     </div>

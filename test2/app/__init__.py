@@ -5,17 +5,15 @@ from flask_migrate import Migrate
 from dotenv import load_dotenv
 from flask_cors import CORS
 from flask_swagger_ui import get_swaggerui_blueprint
+from config.config import config_dict
 
 db = SQLAlchemy()
 
 
-def create_app():
+def create_app(config=config_dict['dev']):
     app = Flask(__name__)
     load_dotenv()
-    if app.config['TESTING']:
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../data/test_tasks.db'
-    else:
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../data/tasks.db'
+    app.config.from_object(config)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     CORS(app)
     db.init_app(app)

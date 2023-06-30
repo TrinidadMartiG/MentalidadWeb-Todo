@@ -11,6 +11,8 @@ python-dotenv = "*"
 flask-restx = "*"
 flask-cors = "*"
 flask-swagger-ui = "*"
+python-decouple = "*"
+pytest = "*"
 
 [dev-packages]
 
