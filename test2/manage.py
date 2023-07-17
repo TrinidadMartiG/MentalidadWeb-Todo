@@ -2,13 +2,14 @@
 import os
 import unittest
 from flask.cli import FlaskGroup
+from flask_cors import CORS
 from app import create_app, db, config_dict
 
 cli = FlaskGroup(create_app=lambda: create_app(config_dict['dev']))
 
 @cli.command('runserver')
 def runserver():
-    create_app(config_dict['dev'])
+    create_app(config_dict['dev'])  
 
 @cli.command('test')
 def test():

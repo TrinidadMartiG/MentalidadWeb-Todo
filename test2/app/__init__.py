@@ -15,7 +15,7 @@ def create_app(config=config_dict['dev']):
     load_dotenv()
     app.config.from_object(config)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    CORS(app)
+    CORS(app, origins="http://localhost:5001")
     db.init_app(app)
     migrate = Migrate(app, db)
 
