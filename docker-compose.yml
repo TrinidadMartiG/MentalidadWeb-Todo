@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=trini
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=task-db
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db/pgdata:/var/lib/postgresql/data
+
+  flask-app:
+    build: 
+      context: ./backend
+    command: flask db init && flask db migrate && flask db upgrade && python manage.py run --host=0.0.0.0 --port=5001
+    env_file:
+      - ./backend/.env
+    ports:
+      - 5001:5001
+    depends_on: 
+      - postgres
+    volumes:
+      - ./backend:/usr/src/app

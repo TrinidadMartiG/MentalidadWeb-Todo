@@ -2,15 +2,12 @@ FROM python:3.8
 
 WORKDIR /backend
 
-COPY requirements.txt .
+COPY requirements.txt /backend/
+COPY Pipfile Pipfile.lock /backend/
 
-COPY Pipfile Pipfile.lock ./
-
-RUN python -m pip install --upgrade pip
-RUN pip install pipenv && \
-pip install -r requirements.txt
-
-COPY . /usr/src/app/
+RUN pip install --upgrade pip \
+    && pip install -r /backend/requirements.txt
+    
+COPY . /backend/
 
 EXPOSE 5000
-

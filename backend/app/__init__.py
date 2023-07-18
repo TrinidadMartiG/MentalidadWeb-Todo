@@ -1,9 +1,9 @@
 from flask import Flask, render_template
 from flask_restx import Api
-from app.models import db, migrate
+from app.models import db
 from flask_cors import CORS
 from flask_swagger_ui import get_swaggerui_blueprint
-
+from flask_migrate import Migrate
 
 def create_app(config):
     app = Flask(__name__)
@@ -11,8 +11,8 @@ def create_app(config):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     CORS(app, resources={"*": {"origins":"http://localhost:5001"}})
     db.init_app(app)
-    migrate.init_app(app, db)
-
+    migrate = Migrate(app, db)
+    
     SWAGGER_URL = '/api/v1/documentation'
     API_URL = '/static/swagger.json'
     SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
